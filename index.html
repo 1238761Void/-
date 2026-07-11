@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYS_RETRY</title>
+    <style>
+        body {
+            background-color: #08080a;
+            color: #666666;
+            font-family: "Courier New", monospace;
+            padding: 50px 20px;
+            margin: 0;
+            font-size: 0.9em;
+        }
+
+        .wrapper {
+            max-width: 550px;
+            margin: 0 auto;
+            border: 1px solid #1a1a1a;
+            padding: 30px;
+            background-color: #020202;
+        }
+
+        .step {
+            display: none;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        .instruction {
+            color: #888;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .instruction a {
+            color: #444;
+            text-decoration: underline;
+        }
+        .instruction a:hover {
+            color: #666;
+        }
+
+        .input-zone {
+            margin-top: 30px;
+        }
+
+        input[type="text"] {
+            background: #050505;
+            border: 1px solid #151515;
+            color: #ccc;
+            padding: 8px 12px;
+            font-family: inherit;
+            font-size: 0.95em;
+            outline: none;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        input[type="text"]:focus {
+            border-color: #333;
+        }
+
+        .btn-container {
+            margin-top: 15px;
+        }
+
+        button {
+            background: none;
+            border: 1px solid #222;
+            color: #666;
+            padding: 5px 15px;
+            font-family: inherit;
+            cursor: pointer;
+            font-size: 0.85em;
+        }
+
+        button:hover {
+            color: #fff;
+            border-color: #444;
+        }
+
+        .status-msg {
+            color: #551111;
+            margin-top: 15px;
+            font-size: 0.8em;
+            height: 15px;
+        }
+
+        .final-box {
+            color: #ffffff;
+            font-size: 1.1em;
+            line-height: 1.8;
+            border-left: 1px solid #333;
+            padding-left: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+
+    <!-- ШАГ 1 -->
+    <div id="step1" class="step active">
+        <div class="instruction">
+            <strong>4321 ьлорап</strong>
+        </div>
+        <div class="input-zone">
+            <input type="text" id="ans1" autocomplete="off" autofocus placeholder="...">
+            <div class="btn-container"><button onclick="checkStep(1, 2)">ОТПРАВИТЬ</button></div>
+        </div>
+        <div id="error1" class="status-msg"></div>
+    </div>
+
+    <!-- ШАГ 2 -->
+    <div id="step2" class="step">
+        <div class="instruction">
+            Год запуска первого искусственного спутника Земли (Спутник-1)?
+        </div>
+        <div class="input-zone">
+            <input type="text" id="ans2" autocomplete="off" placeholder="...">
+            <div class="btn-container"><button onclick="checkStep(2, 3)">ОТПРАВИТЬ</button></div>
+        </div>
+        <div id="error2" class="status-msg"></div>
+    </div>
+
+    <!-- ШАГ 3 -->
+    <div id="step3" class="step">
+        <div class="instruction">
+            Бескрылая птица, эндемик Новой Зеландии.<br>
+            <a href="https://ru.wikipedia.org" target="_blank">wikipedia.org</a><br><br>
+            Первое слово из её официального названия на латыни.
+        </div>
+        <div class="input-zone">
+            <input type="text" id="ans3" autocomplete="off" placeholder="...">
+            <div class="btn-container"><button onclick="checkStep(3, 4)">ОТПРАВИТЬ</button></div>
+        </div>
+        <div id="error3" class="status-msg"></div>
+    </div>
+
+    <!-- ШАГ 4 -->
+    <div id="step4" class="step">
+        <div class="instruction">
+            <strong>-48.8767, -123.3933</strong><br><br>
+            Как называется этот океанский полюс недоступности? (Одно слово на русском).
+        </div>
+        <div class="input-zone">
+            <input type="text" id="ans4" autocomplete="off" placeholder="...">
+            <div class="btn-container"><button onclick="checkStep(4, 5)">ОТПРАВИТЬ</button></div>
+        </div>
+        <div id="error4" class="status-msg"></div>
+    </div>
+
+    <!-- ШАГ 5 -->
+    <div id="step5" class="step">
+        <div class="instruction">
+            Текстовый эквивалент последовательности по порядку алфавита (А=1, Б=2...):<br><br>
+            <strong>12 10 3 10</strong>
+        </div>
+        <div class="input-zone">
+            <input type="text" id="ans5" autocomplete="off" placeholder="...">
+            <div class="btn-container"><button onclick="checkStep(5, 6)">ОТПРАВИТЬ</button></div>
+        </div>
+        <div id="error5" class="status-msg"></div>
+    </div>
+
+    <!-- ШАГ 6 -->
+    <div id="step6" class="step">
+        <div class="instruction">
+            Идентификатор видеопотока `dQw4w9WgXcQ`. <br>
+            Фамилия исполнителя этой песни на английском.
+        </div>
+        <div class="input-zone">
+            <input type="text" id="ans6" autocomplete="off" placeholder="...">
+            <div class="btn-container"><button onclick="checkStep(6, 7)">ОТПРАВИТЬ</button></div>
+        </div>
+        <div id="error6" class="status-msg"></div>
+    </div>
+
+    <!-- ШАГ 7 -->
+    <div id="step7" class="step">
+        <div class="instruction">
+            Какая английская буква должна стоять в начале адреса после знака вопроса, чтобы ссылка с шага 6 заработала?<br>
+            `youtube.com/...atch?v=dQw4w9WgXcQ`
+        </div>
+        <div class="input-zone">
+            <input type="text" id="ans7" autocomplete="off" placeholder="...">
+            <div class="btn-container"><button onclick="checkStep(7, 8)">ОТПРАВИТЬ</button></div>
+        </div>
+        <div id="error7" class="status-msg"></div>
+    </div>
+
+    <!-- ШАГ 8 -->
+    <div id="step8" class="step">
+        <div class="instruction">
+            Сколько букв «а» (в любом регистре) содержится в этой строке?<br><br>
+            <strong>«А роза упала на лапу Азора»</strong>
+        </div>
+        <div class="input-zone">
+            <input type="text" id="ans8" autocomplete="off" placeholder="...">
+            <div class="btn-container"><button onclick="checkStep(8, 9)">ОТПРАВИТЬ</button></div>
+        </div>
+        <div id="error8" class="status-msg"></div>
+    </div>
+
+    <!-- ШАГ 9 -->
+    <div id="step9" class="step">
+        <div class="instruction">
+            Подсказка: <strong>фрукт</strong>
+        </div>
+        <div class="input-zone">
+            <input type="text" id="ans9" autocomplete="off" placeholder="...">
+            <div class="btn-container"><button onclick="triggerFinal()">ПОДТВЕРДИТЬ</button></div>
+        </div>
+        <div id="error9" class="status-msg"></div>
+    </div>
+
+    <!-- ФИНАЛ -->
+    <div id="stepFinal" class="step">
+        <div class="final-box">
+            киви здесь не причем
+        </div>
+    </div>
+</div>
+
+<script>
+    function hash(str) {
+        let h = 0;
+        for (let i = 0; i < str.length; i++) {
+            h = (h << 5) - h + str.charCodeAt(i);
+            h |= 0;
+        }
+        return h.toString();
+    }
+
+    const answers = {
+        1: hash("1234"),
+        2: hash("1957"),     
+        3: hash("apteryx"),  
+        4: hash("немо"),     
+        5: hash("киви"),
+        6: hash("astley"),
+        7: hash("w"),
+        8: hash("8")
+    };
+
+    function checkStep(current, next) {
+        let input = document.getElementById('ans' + current).value.trim().toLowerCase();
+        const error = document.getElementById('error' + current);
+
+        if (current === 4 && input.includes("немо")) input = "немо";
+
+        if (hash(input) === answers[current]) {
+            document.getElementById('step' + current).classList.remove('active');
+            document.getElementById('step' + next).classList.add('active');
+            const nextInput = document.getElementById('ans' + next);
+            if (nextInput) nextInput.focus();
+        } else {
+            error.innerText = "Ошибка.";
+            setTimeout(() => { error.innerText = ""; }, 2000);
+        }
+    }
+
+    function triggerFinal() {
+        let input = document.getElementById('ans9').value.trim().toLowerCase();
+        const error = document.getElementById('error9');
+
+        if (input === "киви") {
+            document.getElementById('step9').classList.remove('active');
+            document.getElementById('stepFinal').classList.add('active');
+        } else {
+            error.innerText = "Ошибка.";
+            setTimeout(() => { error.innerText = ""; }, 2000);
+        }
+    }
+
+    for(let i = 1; i <= 9; i++) {
+        document.getElementById('ans' + i).addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                if (i === 9) triggerFinal();
+                else checkStep(i, i + 1);
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
