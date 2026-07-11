@@ -106,7 +106,8 @@
     <!-- ШАГ 1 -->
     <div id="step1" class="step active">
         <div class="instruction">
-            <strong>4321 ьлорап</strong>
+            Текстовый эквивалент последовательности по порядку алфавита (А=1, Б=2...):<br><br>
+            <strong>12 10 3 10</strong>
         </div>
         <div class="input-zone">
             <input type="text" id="ans1" autocomplete="off" autofocus placeholder="...">
@@ -118,7 +119,9 @@
     <!-- ШАГ 2 -->
     <div id="step2" class="step">
         <div class="instruction">
-            Год запуска первого искусственного спутника Земли (Спутник-1)?
+            Официальное латинское название птицы <strong>киви</strong> состоит из двух слов.<br>
+            Напишите первое слово из её названия на латыни.<br>
+            <a href="https://ru.wikipedia.org/wiki/Киви_(птицы)" target="_blank">Подсказка на wikipedia.org</a>
         </div>
         <div class="input-zone">
             <input type="text" id="ans2" autocomplete="off" placeholder="...">
@@ -130,9 +133,7 @@
     <!-- ШАГ 3 -->
     <div id="step3" class="step">
         <div class="instruction">
-            Бескрылая птица, эндемик Новой Зеландии.<br>
-            <a href="https://ru.wikipedia.org" target="_blank">wikipedia.org</a><br><br>
-            Первое слово из её официального названия на латыни.
+            Какая страна является официальной родиной птицы киви, где она признана национальным символом? (Название страны на русском языке).
         </div>
         <div class="input-zone">
             <input type="text" id="ans3" autocomplete="off" placeholder="...">
@@ -144,8 +145,7 @@
     <!-- ШАГ 4 -->
     <div id="step4" class="step">
         <div class="instruction">
-            <strong>-48.8767, -123.3933</strong><br><br>
-            Как называется этот океанский полюс недоступности? (Одно слово на русском).
+            Растение, на котором зреют сочные плоды киви (актинидия китайская), по своей жизненной форме является деревянистой... кем? (Одно слово на русском).
         </div>
         <div class="input-zone">
             <input type="text" id="ans4" autocomplete="off" placeholder="...">
@@ -157,8 +157,8 @@
     <!-- ШАГ 5 -->
     <div id="step5" class="step">
         <div class="instruction">
-            Текстовый эквивалент последовательности по порядку алфавита (А=1, Б=2...):<br><br>
-            <strong>12 10 3 10</strong>
+            Какое второе название (историческое) носит фрукт киви? <br>
+            «Китайский ...» (Одно слово на русском, во множественном или единственном числе).
         </div>
         <div class="input-zone">
             <input type="text" id="ans5" autocomplete="off" placeholder="...">
@@ -196,8 +196,7 @@
     <!-- ШАГ 8 -->
     <div id="step8" class="step">
         <div class="instruction">
-            Сколько букв «а» (в любом регистре) содержится в этой строке?<br><br>
-            <strong>«А роза упала на лапу Азора»</strong>
+            Как изначально называлась российская платежная система, которая позже провела ребрендинг и взяла имя птицы киви? (Напишите её оригинальное название английскими буквами).
         </div>
         <div class="input-zone">
             <input type="text" id="ans8" autocomplete="off" placeholder="...">
@@ -237,21 +236,21 @@
     }
 
     const answers = {
-        1: hash("1234"),
-        2: hash("1957"),     
-        3: hash("apteryx"),  
-        4: hash("немо"),     
-        5: hash("киви"),
+        1: hash("киви"),
+        2: hash("apteryx"),
+        3: hash("новая зеландия"),
+        4: hash("лиана"),
+        5: hash("крыжовник"),
         6: hash("astley"),
         7: hash("w"),
-        8: hash("8")
+        8: hash("osmp")
     };
 
     function checkStep(current, next) {
         let input = document.getElementById('ans' + current).value.trim().toLowerCase();
         const error = document.getElementById('error' + current);
 
-        if (current === 4 && input.includes("немо")) input = "немо";
+        if (current === 5 && input.includes("крыжовник")) input = "крыжовник";
 
         if (hash(input) === answers[current]) {
             document.getElementById('step' + current).classList.remove('active');
